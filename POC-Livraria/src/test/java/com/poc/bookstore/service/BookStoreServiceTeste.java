@@ -18,8 +18,8 @@ public class BookStoreServiceTeste {
 	
 	@Before
 	public void init(){
-		RestAssured.baseURI = "http://localhost:8180/POC-Livraria";
-		RestAssured.port = 8180;
+		RestAssured.baseURI = "http://localhost:8280/POC-Livraria";
+		RestAssured.port = 8280;
 	}
 	
 	@Test
@@ -58,8 +58,11 @@ public class BookStoreServiceTeste {
 		Author rafael = new Author("Rafael Macedo");
 		Book book = new Book(6L, "Book - 6", Arrays.asList(rafael));
 		Response response = (Response) given().header("Accept", "application/json")
-				.contentType("application/json").body(book).post("/inserir/livro").then().extract().response();
+				.contentType("application/json").body(book).post("/book/inserir/livro").then().extract().response();
 		
+		Book book_6 = given().header("Accept", "application/json").expect().statusCode(200).get(response.getHeader("location")).andReturn().as(Book.class);
+		
+		assertTrue(book_6.getId().equals(6L));
 		assertEquals(response.getStatusCode(), 201);
 	}
 

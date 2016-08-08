@@ -11,6 +11,8 @@ public class Author {
 	
 	Author() {}
 	
+	
+	
 	public Author(String nome) {
 		this.nome = nome;
 	}

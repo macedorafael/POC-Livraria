@@ -41,14 +41,13 @@ public class BookStoreService {
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Path("inserir/livro")
-	@Produces(MediaType.APPLICATION_JSON)
 	public Response saveBook(Book book){
 		Book b1 = bookControler.saveBook(book);
 		URI uri = URI.create(String.format("/book/%s", b1.getId()));
 		
 		return Response.created(uri).build();
-		
 	}
+	
 }
 
 
