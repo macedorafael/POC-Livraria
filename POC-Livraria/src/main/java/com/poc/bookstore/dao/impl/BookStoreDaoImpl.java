@@ -6,13 +6,14 @@ import java.util.List;
 
 import javax.ejb.Stateless;
 
+import com.poc.bookstore.dao.AbstractDao;
 import com.poc.bookstore.dao.BookDao;
 import com.poc.bookstore.json.dto.Author;
 import com.poc.bookstore.json.dto.AuthorList;
 import com.poc.bookstore.json.dto.Book;
 
 @Stateless
-public class BookStoreDaoImpl implements BookDao{
+public class BookStoreDaoImpl extends AbstractDao implements BookDao{
 	
 	private static List<Book> books = new ArrayList<Book>();
 	
